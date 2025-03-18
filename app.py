@@ -184,9 +184,14 @@ async def handler(websocket):
         await start(websocket)
 
 
-def health_check(connection, request):
-    if request.path == "/healthz":
-        return connection.respond(http.HTTPStatus.OK, "OK\n")
+# def health_check(connection, request):
+#     if request.path == "/healthz":
+#         return connection.respond(http.HTTPStatus.OK, "OK\n")
+    
+def health_check(path, request_headers):
+    if path == "/healthz":
+        return http.HTTPStatus.OK, [], b"OK\n"
+
 
 
 async def main():
